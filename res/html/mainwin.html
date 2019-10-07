@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<title>SubTitleSearcher</title>
+<link rel="stylesheet" href="images/css/style.css">
+
+<script src="images/js/jquery.min.js"></script>
+<link rel="stylesheet" href="images/js/layer/theme/default/layer.css">
+<script src="images/js/layer/layer.js"></script>
+
+<link rel="stylesheet" href="images/js/plugins/newforms/skins/default/style.css">
+<script src="images/js/plugins/newforms/jquery.newforms.js"></script>
+
+<link rel="stylesheet" href="images/js/plugins/ContextMenu/contextMenu.css">
+<script src="images/js/plugins/ContextMenu/contextMenu.js"></script>
+
+<script src="images/js/common.js"></script>
+<script src="images/js/main.js"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript">
+	alert("请升级您的系统浏览器为IE9以上")
+</script>
+<![endif]-->
+</head>
+<body oncontextmenu="return false">
+	<link rel="stylesheet" href="images/css/mainwin.css">
+	<div id="about_box" class="about_box">
+		<div class="dialog">
+			<a class="close">X</a>
+			<div class="logo"><img src="/res/logo" /></div>
+			<div class="con">
+				<ul class="labels">
+					<li>
+						<div>软件名称：</div>
+						<div class="app_name">-</div>
+					</li>
+					<li>
+						<div>软件版本：</div>
+						<div class="app_ver">-</div>
+					</li>
+					<li>
+						<div>发布时间：</div>
+						<div class="app_pub_date">-</div>
+					</li>
+					<li>
+						<div>软件网址：</div>
+						<div><a href="https://github.com/Andyfoo/GoSubTitleSearcher" class="e_link">github.com/Andyfoo/GoSubTitleSearcher</a></div>
+					</li>
+				</ul>
+				<div class="info">
+					<div class="title">免责声名：</div>
+					<ul>
+						<li>
+							本软件仅供个人学习和研究之用，不得用于商业或者非法用途。
+						</li>
+						<li>
+							下载后会覆盖原字幕，请谨慎操作。
+						</li>
+						<li>
+							所有字幕均来源于互联网，请使用者自行承担风险。
+						</li>
+						<li>
+							作者仅提供学习和研究工具，不对其内容的准确性、可靠性、正当性、安全性、合法性等负责,亦不承担任何法律责任。
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="search_box" class="search_box">
+		<div class="con">
+			<form action="?" method="get" name="search_from" id="search_from">
+				<table cellpadding="0" cellspacing="0" border="0" width="100%">
+					<tr>
+						<td height="32">
+                                                        <div class="filename_border"><div class="filename" val="">请选择文件或拖拽文件到这里......</div></div>
+						</td>
+						<td width="160" align="center">
+							<input type="button" value="选择文件" id="btn_sel_file" />
+							<input type="button" value="搜索" id="btn_search" />
+							<input type="button" value="" id="btn_about"  />
+						</td>
+					</tr>
+					<tr>
+						<td height="32" align="center" colspan="2">
+							<label><input type="checkbox" name="froms" value="sheshou" /> 射手</label>
+							&nbsp;&nbsp;&nbsp;
+							<label><input type="checkbox" name="froms" value="xunlei" /> 迅雷</label>
+							&nbsp;&nbsp;&nbsp;
+							<label><input type="checkbox" name="froms" value="zimuku" /> 字幕库</label>
+							&nbsp;&nbsp;&nbsp;
+							<label><input type="checkbox" name="froms" value="subhd" /> SubHD(较慢)</label>
+							
+						</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div style="background:#ccc;line-height:32px;text-align:center;color:blue" id="status_label">
+		请选择视频文件后查询
+		</div>
+	</div>
+	<form action="?" method="get" name="batch_from" id="batch_from">
+	<div id="list_body" class="list_body">
+		<table width="100%" border="0" cellpadding="3" cellspacing="0" class="list_table">
+			<tbody id="rec_list">
+			<script id="rec_list_tpl" type="text/html">
+			<<# for(var i = 0, len = d.list.length; i < len; i++){ var row = d.list[i];>>
+				<tr>
+					<td width="60" align="center"><input type="checkbox" name="item_id" value="<< i >>" /> << i+1 >></td>
+					<td align="left">
+						<div class="title"><< row.title >></div>
+						<<# if(row.from == 'xunlei'){>>
+						<div class="info1"><< row.data.language >></div>
+						<<# }else if(row.from == 'zimuku'){>>
+						<div class="info1"><< row.data.ext >>，<< row.data.lang >>，下载次数:<< row.data.downCount >></div>
+							<<# if(row.data.authorInfo){>>
+						<div class="info2"><< row.data.authorInfo >></div>
+							<<# }>>
+						<<# }else if(row.from == 'subhd'){>>
+						<div class="info1"><< row.data.ext >>，下载次数:<< row.data.downCount >></div>
+							<<# if(row.data.authorInfo){>>
+						<div class="info2"><< row.data.authorInfo >></div>
+							<<# }>>
+						<<# }>>
+					</td>
+					<td width="60" align="center"><div class="rate"><< row.rate >></div><div class="from"><< downFromMap[row.from].title >></div></td>
+					<td width="115" align="center">
+						<select style="width:110px;" name="item_simplified_charset">
+							<option value="">默认编码</option>
+							<option value="UTF-8">UTF-8 繁转简</option>
+							<option value="GBK">GBK 繁转简</option>
+							<option value="Big5">Big5 繁转简</option>
+						</select></td>
+					<td width="60" align="center"><input type="button" value="下载" class="download" /></td>
+
+				</tr>
+			<<# } >>
+			</script>
+			</tbody>
+		</table>
+	</div>
+	<div id="list_footer" class="list_footer">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td style="padding:0 10px;">
+					<label><input type="checkbox" id="select_all" value="1" /> 全选</label>
+					&nbsp;&nbsp;&nbsp;
+					<input type="button" value="下载选中字幕" id="btn_download" />
+					&nbsp;&nbsp;&nbsp;
+					<label><input type="checkbox" id="simplified_select_all" value="1" /> 繁体转简体</label>
+				</td>
+				<td width="200" align="center" style="color:red">
+					下载后会覆盖原字幕，请谨慎操作！
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+
+	<div id="extract_dialog">
+		<div class="box">
+			<a class="close"></a>
+			<div class="container">
+				<iframe scrolling="no" allowtransparency="true" frameborder="0" src="extract_dialog.html" name="extract_dialog_iframe" id="extract_dialog_iframe"></iframe>
+			</div>
+		</div>		
+
+	</div>
+	<script src="images/js/mainwin.js"></script>
+</body>
+</html>

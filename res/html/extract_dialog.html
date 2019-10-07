@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<title>SubTitleSearcher</title>
+<link rel="stylesheet" href="images/css/style.css">
+
+<script src="images/js/jquery.min.js"></script>
+<link rel="stylesheet" href="images/js/layer/theme/default/layer.css">
+<script src="images/js/layer/layer.js"></script>
+
+<link rel="stylesheet" href="images/js/plugins/newforms/skins/default/style.css">
+<script src="images/js/plugins/newforms/jquery.newforms.js"></script>
+
+<link rel="stylesheet" href="images/js/plugins/ContextMenu/contextMenu.css">
+<script src="images/js/plugins/ContextMenu/contextMenu.js"></script>
+
+<script src="images/js/common.js"></script>
+<script src="images/js/main.js"></script>
+</head>
+<body 1oncontextmenu="return false">
+	<link rel="stylesheet" href="images/css/extract_dialog.css">
+	<div id="search_box" class="search_box">
+		<div class="con">
+			
+		</div>
+	</div>
+	<form action="?" method="get" name="batch_from" id="batch_from">
+	<div id="list_body" class="list_body">
+		<table width="100%" border="0" cellpadding="3" cellspacing="0" class="list_table">
+			<tbody id="rec_list">
+			<script id="rec_list_tpl" type="text/html">
+			<<# for(var i = 0, len = d.list.length; i < len; i++){ var row = d.list[i];>>
+				<tr>
+					<td width="60" align="center"><input type="checkbox" name="item_id" value="<< i >>" /> << i+1 >></td>
+					<td align="left">
+						<div class="title" val="<< row.filename >>"><< row.filename >></div>
+					</td>
+					<td width="60" align="center"><< formatSize(row.size) >></td>
+					<td width="115" align="center">
+						<select style="width:110px;" name="item_simplified_charset">
+							<option value="">默认编码</option>
+							<option value="UTF-8">UTF-8 繁转简</option>
+							<option value="GBK">GBK 繁转简</option>
+							<option value="Big5">Big5 繁转简</option>
+						</select></td>
+					<td width="60" align="center"><input type="button" value="下载" class="download" /></td>
+
+				</tr>
+			<<# } >>
+			</script>
+			</tbody>
+		</table>
+	</div>
+	<div id="list_footer" class="list_footer">
+		<table cellpadding="0" cellspacing="0" border="0" width="100%">
+			<tr>
+				<td style="padding:0 10px;">
+					<label><input type="checkbox" id="select_all" value="1" /> 全选</label>
+					&nbsp;&nbsp;&nbsp;
+					<input type="button" value="下载选中字幕" id="btn_download" />
+					&nbsp;&nbsp;&nbsp;
+					<label><input type="checkbox" id="simplified_select_all" value="1" /> 繁体转简体</label>
+				</td>
+				<td width="200" align="center" style="color:red">
+					
+				</td>
+			</tr>
+		</table>
+	</div>
+	</form>
+
+	<script src="images/js/extract_dialog.js"></script>
+</body>
+</html>

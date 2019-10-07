@@ -1,0 +1,32 @@
+
+.list_table{
+	table-layout:fixed;	
+}
+
+.list_table td{
+	word-wrap: break-word;
+	word-break:break-all;
+}
+.list_table .title{
+	color:#333;
+}
+
+.download{
+	opacity:.5; 
+}
+
+.search_box .con{
+	line-height:32px;
+	text-align:center;
+}
+.search_box .con .light{
+	color:blue;
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,130 @@
+package ui
+
+import (
+	"fmt"
+	//"strconv"
+	//"time"
+
+	//"fmt"
+	"strings"
+
+	"GoSubTitleSearcher/config"
+	"GoSubTitleSearcher/server"
+
+	"github.com/Andyfoo/go-xutils/xlog"
+
+	"github.com/zserge/webview"
+)
+
+type MyWindow struct {
+	*walk.MainWindow
+}
+
+func init() {
+	//config.SetMovFile("E:/_tmp/mov/downsizing.2017.720p.bluray.x264-geckos.mkv")
+}
+func MainForm() {
+
+	mw := webview.New(webview.Settings{
+
+		Width:                  800,
+		Height:                 600,
+		Title:                  "Simple window demo",
+		Resizable:              false,
+		URL:                    startServer(),
+		ExternalInvokeCallback: handleRPC,
+		Debug:                  false,
+	})
+
+	if err := (MainWindow{
+		AssignTo: &mw.MainWindow,
+		Icon:     11, //Bind("'res/icon/app.ico'")
+		Title:    fmt.Sprintf("%s(%s) v%s", config.AppTitle, config.AppName, config.AppVer),
+		Size:     Size{800, 600},
+		MinSize:  Size{800, 600},
+		Layout:   VBox{MarginsZero: true},
+		OnDropFiles: func(files []string) {
+			//wv.Refresh()
+			if files != nil && len(files) > 0 {
+				config.SetMovFile(files[0])
+			}
+			xlog.Info(strings.Join(files, "\r\n"))
+			server.WsManager.BroadcastSend(server.WsManager.Data2Message("", "", "mov_file_change", 0, "ok", config.MovFileInfo), nil)
+		},
+		Children: []Widget{
+			LineEdit{
+				Visible:  config.DisplayUrl,
+				AssignTo: &le,
+				Text:     Bind("wv.URL"),
+				OnKeyDown: func(key walk.Key) {
+					if key == walk.KeyReturn {
+						wv.Refresh()
+						//server.WsManager.BroadcastSend(server.WsManager.Txt2Message("aaaaa"), nil)
+
+						//wv.SetURL(le.Text())
+					}
+				},
+				Background: SolidColorBrush{Color: walk.RGB(200, 200, 200)},
+			},
+			WebView{
+				AssignTo: &wv,
+				Name:     "wv",
+				URL:      server.ServerUrl + "/mainwin.html", //?_t=" + strconv.FormatInt(time.Now().Unix(), 10)
+			},
+		},
+		Functions: map[string]func(args ...interface{}) (interface{}, error){
+			"icon": func(args ...interface{}) (interface{}, error) {
+				if strings.HasPrefix(args[0].(string), "https") {
+					return "check", nil
+				}
+
+				return "stop", nil
+			},
+		},
+	}).Create(); err != nil {
+		xlog.Fatal(err)
+	}
+	//窗口居中
+	x, y := ScreenCenter(mw.MinSize().Width, mw.MinSize().Height)
+	_ = mw.SetX(x)
+	_ = mw.SetY(y)
+
+	server.CB_SelectFile = func() string {
+		var filepath = mw.SelectFile()
+		if len(filepath) > 0 && filepath != "error" && filepath != "cancel" {
+			config.SetMovFile(filepath)
+		}
+		return filepath
+	}
+	//var ii win.ICONINFO
+	//var bi win.BITMAPINFO
+
+	//xlog.Info(walk.IconWinLogo())
+
+	// if !win.GetIconInfo(walk.IconApplication(), &ii) {
+
+	// }
+	mw.Run()
+}
+func ScreenCenter(w, h int) (x, y int) {
+	srcWidth := win.GetSystemMetrics(win.SM_CXSCREEN)
+	srcHeight := win.GetSystemMetrics(win.SM_CYSCREEN)
+	x = (int(srcWidth) - w) / 2
+	y = (int(srcHeight) - h) / 2
+	//xlog.Infof("dec main:srcWidth=%s, srcHeight=%s, w=%s, h=%s, x=%s, y=%s", srcWidth, srcHeight, w, h, x, y)
+	return
+}
+func (mw *MyWindow) SelectFile() string {
+	dlg := new(walk.FileDialog)
+	dlg.Title = "选择视频文件"
+	dlg.Filter = "视频文件 (*.mkv; *mp4)|*.mkv; *mp4; *.mov; *.avi; *.ts|所有文件 (*.*)|*.*"
+	if ok, err := dlg.ShowOpen(mw); err != nil {
+		//mw.editAppendText("Error : File Open\r\n")
+		xlog.Error("Error : File Open")
+		return "error"
+	} else if !ok {
+		xlog.Error("Cancel")
+		return "cancel"
+	}
+	return dlg.FilePath
+}

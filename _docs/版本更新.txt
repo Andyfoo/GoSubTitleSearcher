@@ -1,0 +1,2 @@
+go mod edit -require=github.com/Andyfoo/go-xutils@v1.0.1
+go mod tidy

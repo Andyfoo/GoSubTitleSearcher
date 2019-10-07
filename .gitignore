@@ -10,3 +10,10 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+/_publish
+/bin
+/tmpData
+/GoSubTitleSearcher.exe
+/GoSubTitleSearcher_x32.exe
+/GoSubTitleSearcher_x64.exe
+/.vscode
