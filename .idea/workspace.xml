@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8da82ca0-6223-457a-81b7-eadefdfff288" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" path="D:\my_libs\go\go" />
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="1R4i8LayQmBWondTLNuHxJJPo2E" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Go Build.go build subhd.go">
+    <configuration name="go build subhd.go" type="GoApplicationRunConfiguration" factoryName="Go Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <module name="GoSubTitleSearcher" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <filePath value="$PROJECT_DIR$/spider/subhd/subhd.go" />
+      <package value="GoSubTitleSearcher" />
+      <directory value="$PROJECT_DIR$/" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Test1 in GoSubTitleSearcher/spider/subhd" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="GoSubTitleSearcher" />
+      <working_directory value="$PROJECT_DIR$/spider/subhd" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="GoSubTitleSearcher/spider/subhd" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/" />
+      <pattern value="^Test1$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="subhd_test.go" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="GoSubTitleSearcher" />
+      <working_directory value="$PROJECT_DIR$/spider/subhd" />
+      <framework value="gotest" />
+      <kind value="FILE" />
+      <package value="GoSubTitleSearcher" />
+      <directory value="$PROJECT_DIR$/" />
+      <filePath value="$PROJECT_DIR$/spider/subhd/subhd_test.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build subhd.go" />
+        <item itemvalue="Go Test.subhd_test.go" />
+        <item itemvalue="Go Test.Test1 in GoSubTitleSearcher/spider/subhd" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+    <proxy>direct</proxy>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="402" y="86" key="#go_build_subhd.go" />
+    <state x="402" y="86" key="#go_build_subhd.go/2736.1824" />
+    <state width="1326" height="147" key="GridCell.Tab.0.bottom" />
+    <state width="1326" height="147" key="GridCell.Tab.0.bottom/2736.1824" />
+    <state width="1326" height="147" key="GridCell.Tab.0.center" />
+    <state width="1326" height="147" key="GridCell.Tab.0.center/2736.1824" />
+    <state width="1326" height="147" key="GridCell.Tab.0.left" />
+    <state width="1326" height="147" key="GridCell.Tab.0.left/2736.1824" />
+    <state width="1326" height="147" key="GridCell.Tab.0.right" />
+    <state width="1326" height="147" key="GridCell.Tab.0.right/2736.1824" />
+    <state x="265" y="171" key="IDE.errors.dialog" />
+    <state x="265" y="171" key="IDE.errors.dialog/2736.1824" />
+    <state x="365" y="269" key="Performance.Activity.Monitor" />
+    <state x="365" y="269" key="Performance.Activity.Monitor/2736.1824" />
+    <state x="456" y="72" width="912" height="706" key="SettingsEditor" />
+    <state x="456" y="72" width="912" height="706" key="SettingsEditor/2736.1824" />
+    <state width="498" height="446" key="SwitcherDM" />
+    <state width="498" height="446" key="SwitcherDM/2736.1824" />
+  </component>
+</project>
