@@ -21,6 +21,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/Andyfoo/go-xutils/xencode"
 	"github.com/Andyfoo/go-xutils/xlog"
 )
 
@@ -107,22 +108,23 @@ func UpgradeApp() bool {
 
 	//killRun()
 	upgradeStr := ""
-	upgradeStr += fmt.Sprintf("TASKKILL /F /IM %s\n", AppName)
-	upgradeStr += fmt.Sprintf("ping -n 3 127.0.0.1>nul\n")
+	upgradeStr += fmt.Sprintf("TASKKILL /F /IM %s\r\n", AppName)
+	upgradeStr += fmt.Sprintf("ping -n 3 127.0.0.1>nul\r\n")
 
 	if JsonConfig.Type == "zip" {
 		unzip(appData, upgradePath)
-		upgradeStr += fmt.Sprintf("xcopy /Q /E /Y %s\\%s\\* %s\n", upgradePath, strings.TrimRight(AppName, ".exe"), AppPath)
+		upgradeStr += fmt.Sprintf("xcopy /Q /E /Y \"%s\\%s\\*\" \"%s\"\r\n", upgradePath, strings.TrimRight(AppName, ".exe"), AppPath)
 	} else if JsonConfig.Type == "exe" {
 		ioutil.WriteFile(upgradePath+"/"+AppName, appData, 0755)
-		upgradeStr += fmt.Sprintf("copy /Y %s\\%s %s%s\n", upgradePath, AppName, AppPath, AppName)
+		upgradeStr += fmt.Sprintf("copy /Y \"%s\\%s\" \"%s%s\"\r\n", upgradePath, AppName, AppPath, AppName)
 	} else {
 		xlog.Errorf("type is error: %v\n", JsonConfig.Type)
 		return false
 	}
-	upgradeStr += fmt.Sprintf("start %s%s\n", AppPath, AppName)
+	upgradeStr += fmt.Sprintf("start %s%s\r\n", AppPath, AppName)
+	upgradeStr = xencode.Utf8ToGbkStr(upgradeStr)
 	ioutil.WriteFile(upgradeFile, []byte(upgradeStr), 0755)
-	fmt.Println(upgradeStr)
+	//fmt.Println(upgradeStr)
 	runBatFile(upgradeFile)
 	xlog.Infof("upgrade finish\n")
 
@@ -146,7 +148,7 @@ func Mkdir(path string) bool {
 	return false
 }
 func runBatFile(file string) {
-	cmd := exec.Command(file)
+	cmd := exec.Command("cmd", "/c", file)
 	cmd.SysProcAttr = &syscall.SysProcAttr{HideWindow: true}
 	err := cmd.Start()
 	if err != nil {

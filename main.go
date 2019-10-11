@@ -3,6 +3,7 @@ package main
 import (
 	"GoSubTitleSearcher/config"
 	"GoSubTitleSearcher/ui"
+	"fmt"
 	"os"
 
 	"GoSubTitleSearcher/server"
@@ -15,6 +16,16 @@ func init() {
 
 }
 func main() {
+	lf := xlog.OpenFile(config.AppPath + "/logs.txt")
+	if lf == nil {
+		fmt.Errorf("Failed to open log file")
+		return
+	}
+	defer lf.Close()
+
+	defer xlog.Init("APP", true, false, lf).Close()
+	xlog.Info("############################ start app ################################")
+
 	// if config.IsDebug {
 	// 	xlog.Std = xlog.NewFile(config.AppPath+"/logs.txt", "", xlog.Ldefault)
 	// }
