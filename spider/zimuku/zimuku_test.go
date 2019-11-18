@@ -8,11 +8,11 @@ import (
 func Test1(t *testing.T) {
 	fmt.Println("test")
 	//testGetPageList()
-	testGetFuzzyPageList()
+	//testGetFuzzyPageList()
 	//testGetDetailList()
 	//testDownList()
 
-	//fmt.Println(DownContent("/detail/101144.html"))
+	fmt.Println(DownContent("/detail/101144.html"))
 }
 
 func testGetPageList() {

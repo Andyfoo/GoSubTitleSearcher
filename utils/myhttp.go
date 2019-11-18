@@ -8,5 +8,4 @@ var HUtil = xhttp.NewDefaultHttpUtil()
 
 func init() {
 	HUtil.UseCookie = true
-
 }

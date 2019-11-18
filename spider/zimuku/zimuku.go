@@ -135,7 +135,7 @@ func DownContent(url string) *ZimukuContent {
 		xlog.Error("result is null")
 		return nil
 	}
-	re = regexp.MustCompile(`<li><a\s+rel="nofollow"\s+href="(/download/[^"]+)"`)
+	re = regexp.MustCompile(`<li><a\s+rel="nofollow"\s+href="([^"]*/download/[^"]+)"`)
 	matched = re.FindAllStringSubmatch(result, -1)
 	if matched == nil || len(matched) == 0 || len(matched[0]) == 0 {
 		return nil
@@ -143,9 +143,15 @@ func DownContent(url string) *ZimukuContent {
 	//xlog.Info(matched)
 	var filename string
 	var data []byte
-	data, filename = utils.HUtil.DownFile(fmt.Sprintf("%s%s", baseUrl, matched[0][1]), xhttp.ReqParm{
-		Referer: url,
-	})
+	for i := 0; i < len(matched); i++ {
+		data, filename = utils.HUtil.DownFile(addBaseUrl(matched[i][1]), xhttp.ReqParm{
+			Referer: url,
+		})
+		if data != nil {
+			break
+		}
+	}
+
 	//xlog.Info(filename, err, len(data))
 
 	return &ZimukuContent{
@@ -153,6 +159,12 @@ func DownContent(url string) *ZimukuContent {
 		Ext:      strings.ToLower(xfile.ExtName(filename)),
 		Data:     data,
 	}
+}
+func addBaseUrl(url string) string {
+	if strings.Contains(url, "://") {
+		return url
+	}
+	return fmt.Sprintf("%s%s", baseUrl, url)
 }
 
 //处理文件名中的内容方便搜索更多的字幕数据

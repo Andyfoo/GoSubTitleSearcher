@@ -1,5 +1,5 @@
-set appver=1.0.3
-set appdesc=增加日志文件，修改自动升级bug
+set appver=1.0.4
+set appdesc=修改字幕库下载失败问题
 
 
 
