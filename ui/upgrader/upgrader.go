@@ -61,7 +61,8 @@ func AutoCheckVersion(_AppName, _AppVer, _AppPath, _UpgradeUrl string) {
 func DownUpgradeData() {
 	removeTmpFile()
 	dataBytes := httpGet(UpgradeUrl)
-	if dataBytes == nil {
+	xlog.Info("len(dataBytes)=", len(dataBytes))
+	if dataBytes == nil || len(dataBytes) == 0 {
 		xlog.Errorf("upgrade config data is null\n")
 		return
 	}
@@ -302,9 +303,10 @@ func compareStrVer(verA, verB string) int {
 	lenStrA := len(verStrArrA)
 	lenStrB := len(verStrArrB)
 
+	fmt.Println(verA, verB)
 	if lenStrA != lenStrB {
-		panic("版本号格式不一致")
-
+		xlog.Error("版本号格式不一致")
+		return 0
 	}
 
 	return compareArrStrVers(verStrArrA, verStrArrB)
