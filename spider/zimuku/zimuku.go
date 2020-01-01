@@ -124,12 +124,17 @@ func DownContent(url string) *ZimukuContent {
 		return nil
 	}
 	//fmt.Println(result)
-	re := regexp.MustCompile(`<a\s+id="down1"\s+href="(/dld/[\w]+\.html)"`)
+	re := regexp.MustCompile(`<a\s+id="down1"\s+href="([^"]*/dld/[\w]+\.html)"`)
 	matched := re.FindAllStringSubmatch(result, -1)
 	if matched == nil || len(matched) == 0 || len(matched[0]) == 0 {
 		return nil
 	}
-	url = fmt.Sprintf("%s%s", baseUrl, matched[0][1])
+	if strings.Contains(matched[0][1], "://") {
+		url = matched[0][1]
+	} else {
+		url = fmt.Sprintf("%s%s", baseUrl, matched[0][1])
+	}
+
 	result = httpGet(url)
 	if xvar.IsEmpty(result) {
 		xlog.Error("result is null")

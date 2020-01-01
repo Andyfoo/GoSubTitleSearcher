@@ -13,8 +13,8 @@ import (
 var (
 	AppName    = "GoSubTitleSearcher"
 	AppTitle   = "字幕下载"
-	AppVer     = "1.0.5"
-	AppPubDate = "2019-12-08"
+	AppVer     = "1.0.6"
+	AppPubDate = "2020-01-01"
 
 	AppUpgradeUrl = "https://raw.githubusercontent.com/Andyfoo/my-apps/master/go/tools/GoSubTitleSearcher/last"
 

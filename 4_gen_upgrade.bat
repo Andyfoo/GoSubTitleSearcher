@@ -1,5 +1,5 @@
-set appver=1.0.5
-set appdesc=更新链接打开失败导致退出问题
+set appver=1.0.6
+set appdesc=修改字幕库不能下载问题
 
 
 
