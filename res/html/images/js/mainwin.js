@@ -114,6 +114,9 @@ $(function(){
 				}
 			]
 		];
+		if(typeof(last_list_table_tr) == 'undefined' || last_list_table_tr.find('.download[url]').length>0){
+			menu = [];
+		}
 		var title;
 		if(typeof(last_list_table_tr) != 'undefined' && last_list_table_tr.length > 0){
 			title = last_list_table_tr.find('.title').text();
@@ -147,6 +150,9 @@ $(function(){
 				]);
 			}
 		}
+		if(menu.length==0){
+			return;
+		}
                 ContextMenu.render(e,menu,this); //开始渲染
         });
 	$('#list_body').on('mouseenter','tr',function(){
@@ -154,6 +160,17 @@ $(function(){
 	});
 	$('#list_body').on('click','.download',function(){
 		var tr = $(this).parents('tr');
+		if($(this).attr('url')){
+			ajax_jsonp('/api/open_url',{
+				url : $(this).attr('url')
+			}, function (data){
+				
+				
+			}, function(XMLHttpRequest, textStatus, errorThrown){
+				console.log(XMLHttpRequest, textStatus, errorThrown);
+			});
+			return;
+		}
 		down_zimu(tr.find('input[name="item_id"]').val(), tr.find('select[name="item_simplified_charset"]').val());
 	});
 	

@@ -27,6 +27,7 @@ var (
 
 type SubhdListItem struct {
 	Url        string `json:"url"`
+	BaseUrl    string `json:"baseUrl"`
 	Title      string `json:"title"`
 	Ext        string `json:"ext"`
 	AuthorInfo string `json:"authorInfo"`
@@ -71,11 +72,11 @@ func getDetailList(urlStr string) []SubhdListItem {
 		return nil
 	}
 	var lists = []SubhdListItem{}
-	doc.Find(".d_table tr").Each(func(i int, tr *goquery.Selection) {
-		if tr.Find(".dt_edition").Size() == 0 {
+	doc.Find(".table-sm tr").Each(func(i int, tr *goquery.Selection) {
+		if tr.Find("a.text-dark").Size() == 0 {
 			return
 		}
-		downUrl, exists := tr.Find(".dt_down a").Attr("href")
+		downUrl, exists := tr.Find("a.text-dark").Eq(0).Attr("href")
 		if !exists {
 			return
 		}
@@ -85,10 +86,10 @@ func getDetailList(urlStr string) []SubhdListItem {
 			return
 		}
 		htmlLower := strings.ToLower(html)
-		title := strings.TrimSpace(tr.Find(".dt_edition a").Text())
-		downCount := xregex.GetMatchStr(tr.Find(".dt_count").Text(), `([\d]+)`)
+		title := strings.TrimSpace(tr.Find("a.text-dark").Text())
+		downCount := xregex.GetMatchStr(tr.Find("td.p-3").Eq(1).Text(), `([\d]+)`)
 		ext := ""
-		tr.Find(".label").Each(func(a_i int, a_lb *goquery.Selection) {
+		tr.Find(".text-secondary span").Each(func(a_i int, a_lb *goquery.Selection) {
 			ext += a_lb.Text() + "，"
 		})
 		ext_len := len(ext)
@@ -106,12 +107,13 @@ func getDetailList(urlStr string) []SubhdListItem {
 		if lang_len > 0 {
 			lang = lang[0 : lang_len-3]
 		}
-		authorInfo := tr.Find(".pull-right").Text()
+		authorInfo := tr.Find("a.text-dark").Eq(2).Text()
 
 		rate := ""
 
 		listitem := SubhdListItem{}
 		listitem.Url = downUrl
+		listitem.BaseUrl = baseUrl
 		listitem.Title = title
 		listitem.Ext = ext
 		listitem.AuthorInfo = authorInfo
@@ -242,7 +244,7 @@ func getPageList(title string) []string {
 		return nil
 	}
 	//fmt.Println(result)
-	re := regexp.MustCompile(`<a\shref="(/do[\w]+/[\w]+)"><img`)
+	re := regexp.MustCompile(`<a\shref="(/d/[\w]+)"><img`)
 	matched := re.FindAllStringSubmatch(result, -1)
 	lists := make([]string, 0)
 	for _, match := range matched {

@@ -54,7 +54,7 @@ func MainForm() {
 	xlog.Info("serverUrl:", serverUrl)
 	mw = webview.New(webview.Settings{
 		//Icon: "E:/workspace/go/_my_tools/GoSubTitleSearcher/res/icon/app.ico",
-		IconId:                 11,
+		IconId:                 2,
 		Width:                  800,
 		Height:                 600,
 		Title:                  title,

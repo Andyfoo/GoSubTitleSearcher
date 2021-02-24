@@ -99,7 +99,7 @@
 							&nbsp;&nbsp;&nbsp;
 							<label><input type="checkbox" name="froms" value="zimuku" /> 字幕库</label>
 							&nbsp;&nbsp;&nbsp;
-							<label><input type="checkbox" name="froms" value="subhd" /> SubHD(较慢)</label>
+							<label><input type="checkbox" name="froms" value="subhd" /> SubHD(浏览器打开)</label>
 							
 						</td>
 					</tr>
@@ -117,7 +117,12 @@
 			<script id="rec_list_tpl" type="text/html">
 			<<# for(var i = 0, len = d.list.length; i < len; i++){ var row = d.list[i];>>
 				<tr>
-					<td width="60" align="center"><input type="checkbox" name="item_id" value="<< i >>" /> << i+1 >></td>
+					<td width="60" align="center">
+						<<# if(row.from == 'subhd'){>>
+						<<# }else{>>
+						<input type="checkbox" name="item_id" value="<< i >>" />
+						<<# }>>
+                                         << i+1 >></td>
 					<td align="left">
 						<div class="title"><< row.title >></div>
 						<<# if(row.from == 'xunlei'){>>
@@ -136,13 +141,17 @@
 					</td>
 					<td width="60" align="center"><div class="rate"><< row.rate >></div><div class="from"><< downFromMap[row.from].title >></div></td>
 					<td width="115" align="center">
+						<<# if(row.from == 'subhd'){>>
+							-
+						<<# }else{>>
 						<select style="width:110px;" name="item_simplified_charset">
 							<option value="">默认编码</option>
 							<option value="UTF-8">UTF-8 繁转简</option>
 							<option value="GBK">GBK 繁转简</option>
 							<option value="Big5">Big5 繁转简</option>
-						</select></td>
-					<td width="60" align="center"><input type="button" value="下载" class="download" /></td>
+						</select>
+						<<# }>></td>
+					<td width="60" align="center"><input type="button" value="下载" class="download" <<# if(row.from == 'subhd'){>>url="<< row.data.baseUrl >><< row.data.url >>"<<# }>> /></td>
 
 				</tr>
 			<<# } >>
