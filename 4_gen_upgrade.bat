@@ -1,12 +1,12 @@
-set appver=1.0.8
-set appdesc=修改SubHD不能下载问题
+set appver=1.1.0
+set appdesc=修改字幕库网址
 
 
 md _publish\upgrade
 
-set upgradeurl=http://upgrade.res.pslib.com/my-apps/go/tools/GoSubTitleSearcher/GoSubTitleSearcher_%appver%.exe
-set appname=GoSubTitleSearcher
-set appfile=E:\workspace\go\_my_tools\GoSubTitleSearcher\_publish\upgrade\GoSubTitleSearcher_%appver%.exe
+set upgradeurl=http://upgrade.res.pslib.com/my-apps/go/tools/GoSubTitleSearcher/GoSubTitleSearcher_x64_%appver%.exe
+set appname=GoSubTitleSearcher_x64
+set appfile=E:\workspace\go\_my_tools\GoSubTitleSearcher\_publish\upgrade\GoSubTitleSearcher_x64_%appver%.exe
 set savefile=E:\workspace\go\_my_tools\GoSubTitleSearcher\_publish\upgrade\last
 
 del E:\workspace\go\_my_tools\GoSubTitleSearcher\_publish\upgrade\GoSubTitleSearcher*.*

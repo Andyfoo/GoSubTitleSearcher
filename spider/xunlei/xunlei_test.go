@@ -6,6 +6,8 @@ import (
 )
 
 func TestHttp(t *testing.T) {
+
+	fmt.Println("test")
 	testGetCid()
 	//testGetList()
 }

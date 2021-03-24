@@ -55,6 +55,7 @@ func AutoCheckVersion(_AppName, _AppVer, _AppPath, _UpgradeUrl string) {
 	AppPath = _AppPath
 	AppName = _AppName
 	AppVer = _AppVer
+	xlog.Info("AppName=", AppName)
 	DownUpgradeData()
 }
 
@@ -123,6 +124,9 @@ func UpgradeApp() bool {
 		return false
 	}
 	upgradeStr += fmt.Sprintf("start %s%s\r\n", AppPath, AppName)
+
+	xlog.Infof("upgradeStr %v\n", upgradeStr)
+
 	upgradeStr = xencode.Utf8ToGbkStr(upgradeStr)
 	ioutil.WriteFile(upgradeFile, []byte(upgradeStr), 0755)
 	//fmt.Println(upgradeStr)

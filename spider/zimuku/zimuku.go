@@ -19,7 +19,7 @@ import (
 )
 
 var (
-	baseUrl = "https://www.zimuku.la"
+	baseUrl = "https://zmk.pw"
 	cutStrs = []string{".bluray", ".2160p", ".1080p", ".720p", ".480p", ".internal"}
 )
 

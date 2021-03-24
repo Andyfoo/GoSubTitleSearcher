@@ -13,8 +13,8 @@ import (
 var (
 	AppName    = "GoSubTitleSearcher"
 	AppTitle   = "字幕下载"
-	AppVer     = "1.0.8"
-	AppPubDate = "2021-02-25"
+	AppVer     = "1.1.0"
+	AppPubDate = "2021-03-24"
 
 	//AppUpgradeUrl = "https://raw.githubusercontent.com/Andyfoo/my-apps/master/go/tools/GoSubTitleSearcher/last"
 	AppUpgradeUrl = "http://upgrade.res.pslib.com/my-apps/go/tools/GoSubTitleSearcher/last"

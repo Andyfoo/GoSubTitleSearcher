@@ -17,8 +17,7 @@ func testHash() {
 }
 
 func testGetList() {
-	//var a, _ = GetList("E:/_tmp/mov/downsizing.2017.720p.bluray.x264-geckos.mkv")
-	var a, _ = GetList("D:/_win10/Users/FH/Documents/downsizing.2017.720p.bluray.x264-geckos.mkv")
+	var a, _ = GetList("E:/_tmp/mov/downsizing.2017.720p.bluray.x264-geckos.mkv")
 	for k, v := range *a {
 		xlog.Info(k, v)
 	}
