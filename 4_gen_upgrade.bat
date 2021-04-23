@@ -1,4 +1,4 @@
-set appver=1.1.0
+set appver=1.1.1
 set appdesc=ĞŞ¸Ä×ÖÄ»¿âÍøÖ·
 
 
